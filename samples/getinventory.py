@@ -5,11 +5,11 @@ import os
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-apicemHost = "https://10.71.154.113/api/v1"
+apicemHost = "https://<ipaddress>/api/v1"
 
 def get_token(url): #トークン取得
     api_call ="/ticket"
-    payload = {"username": "admin", "password": "Nms12345!" }
+    payload = {"username": "<username>", "password": "<password>" }
     headers = {"content-type" : "application/json"}
     url +=api_call
 
