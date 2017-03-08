@@ -5,11 +5,11 @@ import os
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-apicemHost = "https://<apicem_ipaddress>/api/v1"
+apicemHost = "https://10.71.154.113/api/v1"
 
 def get_token(url): #トークン取得
     api_call ="/ticket"
-    payload = {"username": "<username>", "password": "<password>" }
+    payload = {"username": "admin", "password": "Nms12345!" }
     headers = {"content-type" : "application/json"}
     url +=api_call
 
@@ -38,8 +38,9 @@ def get_device_config(token,url): #コンフィグ取得して保存
 
     response = requests.get(url, headers=headers, verify=False).json()
     
-    date_time = datetime.datetime.now()
-    file_name = str(date_time.year) + str(date_time.month) + str(date_time.day)  + '.' + str(date_time.hour) + str(date_time.minute) 
+    now = datetime.datetime.now()
+    file_name = "{0:%Y%m%d.%H%M}".format(now)
+
     file = open(file_name + '_' + str(len(response['response'])) + 'nodes' + '_config.txt', 'a')
     
     for item in response['response']:
